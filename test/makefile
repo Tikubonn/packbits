@@ -6,6 +6,10 @@ export CFLAGS+=-I$(PACKBITS_INCLUDE) -L$(PACKBITS_LIB) -g
 all: bin/test
 	gdb bin/test
 
+.PHONY: test-bin
+test-bin: scripts/test-packbits.bash scripts/test.bash
+	env PATH="$(PATH):$(PACKBITS_BIN)" ./scripts/test-packbits.bash
+
 .PHONY: clean
 clean:
 	rm -f src/test-packbits.o
